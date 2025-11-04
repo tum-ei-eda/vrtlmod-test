@@ -15,23 +15,21 @@
 ####################################################################################################
 
 cmake_minimum_required(VERSION 3.15 FATAL_ERROR)
-#list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../cmake)
 project(vrtlmod-benchmark)
 
 if(NOT CMAKE_CXX_STANDARD)
     set(CMAKE_CXX_STANDARD 17)
     message(WARNING "CMAKE_CXX_STANDARD not set. Default to ${CMAKE_CXX_STANDARD}")
 endif()
-#set(VRTL_NAME ${VP}) #set(TOP_NAME ...) #from PARENT_SCOPE
-
-#list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_BINARY_DIR})
-#list(APPEND CMAKE_PREFIX_PATH ${CMAKE_CURRENT_BINARY_DIR})
+if(NOT VRTL_NAMES)
+  set(VRTL_NAMES "foo" "cv32e40p" "cv32e40s" "cva6")
+endif()
 
 include(FetchContent)
 
 ####################################################################################################
 # rtl sources: set RTL_SOURCES, RTL_INCLUDE_DIRS, and VERILATE_ARGS in PARENT_SCOPE:
-foreach(VRTL_NAME IN ITEMS "foo" "cv32e40p" "cv32e40s" "cva6")
+foreach(VRTL_NAME IN ITEMS "${VRTL_NAMES}")
     message("VRTL_NAME: ${VRTL_NAME}")
     add_subdirectory(${VRTL_NAME})
     message(${RTL_SRCS})
