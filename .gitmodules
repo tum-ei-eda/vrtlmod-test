@@ -1,9 +1,9 @@
-[submodule "third_party/scc/scc_src"]
-	path = third_party/scc/scc_src
-	url = https://github.com/VP-Vibes/SystemC-Components.git
 [submodule "third_party/fmt/fmt_src"]
 	path = third_party/fmt/fmt_src
 	url = git@github.com:fmtlib/fmt.git
 [submodule "third_party/elfio/elfio_src"]
 	path = third_party/elfio/elfio_src
 	url = https://github.com/serge1/ELFIO.git
+[submodule "third_party/scc/scc_src"]
+	path = third_party/scc/scc_src
+	url = https://github.com/VP-Vibes/SystemC-Components.git
