@@ -29,7 +29,7 @@ include(FetchContent)
 
 ####################################################################################################
 # rtl sources: set RTL_SOURCES, RTL_INCLUDE_DIRS, and VERILATE_ARGS in PARENT_SCOPE:
-foreach(VRTL_NAME IN ITEMS "${VRTL_NAMES}")
+foreach(VRTL_NAME IN LISTS VRTL_NAMES)
     message("VRTL_NAME: ${VRTL_NAME}")
     add_subdirectory(${VRTL_NAME})
     message(${RTL_SRCS})
