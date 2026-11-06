@@ -42,7 +42,7 @@ foreach(VRTL_NAME IN LISTS VRTL_NAMES)
         ${CMAKE_CURRENT_BINARY_DIR}/null.cpp
     )
 
-    verilate(V${VRTL_NAME}
+    vrtlmod_verilate(V${VRTL_NAME}
         PREFIX V${TOP_NAME}
         TOP_MODULE ${TOP_NAME}
         SYSTEMC

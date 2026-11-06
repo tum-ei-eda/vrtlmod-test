@@ -25,10 +25,6 @@ endif()
 
 set(VRTL_NAME ${VP}) #set(TOP_NAME ...) #from PARENT_SCOPE
 
-if(NOT VERILATOR_ROOT)
-    set(VERILATOR_ROOT $ENV{VERILATOR_ROOT})
-    message(STATUS "VERILATOR_ROOT not specified in CMake .. using environment VERILATOR_ROOT: $ENV{VERILATOR_ROOT}")
-endif()
 find_package(VERILATOR REQUIRED)
 if(NOT VRTLMOD_ROOT)
     set(VRTLMOD_ROOT $ENV{VRTLMOD_ROOT})

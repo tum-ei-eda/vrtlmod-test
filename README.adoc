@@ -1,1 +1,24 @@
 = vRTLmod Test
+
+== Verilator discovery
+
+Verilator is selected in this order:
+
+. `VERILATOR_ROOT` passed to CMake (including a cached value).
+. The `VERILATOR_ROOT` environment variable.
+. The `verilator` executable on `PATH`, including distribution packages.
+
+An explicit root may name a source/build tree, an install prefix, or its
+`share/verilator` directory. Invalid explicit roots fail configuration.
+For example, add `-DVERILATOR_ROOT=/path/to/verilator` to pin an installation;
+omit it and leave the environment variable unset to use `PATH`.
+
+CMake reports the selected executable, runtime root and version, and uses that
+installation's matching headers and CMake package. Use the same Verilator
+version used to build vRTLmod, and separate build directories for different
+installations. The selected root is cached within each build directory.
+
+Model generation uses `vrtlmod_verilate(target ...)`, with the arguments of upstream
+`verilate()`. Older Verilator packages require a Makefile or Ninja generator for
+its CMake environment handling. No additional launcher script or Perl requirement
+is introduced; Verilator's own Perl requirements still apply.
