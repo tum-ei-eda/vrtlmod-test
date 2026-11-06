@@ -52,6 +52,10 @@ foreach(VRTL_NAME IN LISTS VRTL_NAMES)
         SOURCES ${RTL_SRCS}
     )
 
+    # Reuse the runtime selected for this model by Verilator.
+    get_target_property(VERILATOR_RUNTIME_SOURCES V${VRTL_NAME} SOURCES)
+    list(FILTER VERILATOR_RUNTIME_SOURCES INCLUDE REGEX "/verilated[^/]*[.]cpp$")
+
     target_link_libraries(V${VRTL_NAME} PUBLIC
         ${SystemC_LIBRARIES}
     )
@@ -117,12 +121,12 @@ foreach(VRTL_NAME IN LISTS VRTL_NAMES)
     add_library(V${VRTL_NAME}_vrtlmod OBJECT
         ${CMAKE_CURRENT_BINARY_DIR}/null.cpp
         ${VRTLMOD_OUTSOURCES}
-        ${VERILATOR_INCLUDE_DIRECTORY}/verilated.cpp
-        ${VERILATOR_INCLUDE_DIRECTORY}/verilated_dpi.cpp
+        ${VERILATOR_RUNTIME_SOURCES}
         ${GENERATED_API_SRCS}
     )
     target_link_libraries(V${VRTL_NAME}_vrtlmod PUBLIC
         ${SystemC_LIBRARIES}
+        ${VERILATOR_MT_CFLAGS}
     )
     target_include_directories(V${VRTL_NAME}_vrtlmod PUBLIC
         ${VERILATOR_INCLUDE_DIRECTORY}
